@@ -839,6 +839,9 @@
 	pinctrl-0 = <&sdmmc1_bus4>, <&sdmmc1_cmd>, <&sdmmc1_clk>;
 	pinctrl-names = "default";
 	vmmc-supply = <&vcc_wifi>;
+	no-mmc;
+	no-sd;
+	sd-uhs-sdr50;
 	status = "okay";
 };
 

@@ -633,6 +633,9 @@
 	sd-uhs-sdr50;
 	vmmc-supply = <&vcc_wifi>;
 	vqmmc-supply = <&vcca1v8_pmu>;
+	no-mmc;
+	no-sd;
+	sd-uhs-sdr50;
 	status = "okay";
 };
 
