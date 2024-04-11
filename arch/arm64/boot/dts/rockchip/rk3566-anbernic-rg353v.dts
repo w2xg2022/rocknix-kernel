@@ -64,20 +64,6 @@
 	};
 };
 
-&gpio_keys_control {
-	button-r1 {
-		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-		label = "TR";
-		linux,code = <BTN_TR>;
-	};
-
-	button-r2 {
-		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-		label = "TR2";
-		linux,code = <BTN_TR2>;
-	};
-};
-
 &i2c2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c2m1_xfer>;
@@ -123,4 +109,17 @@
 	vmmc-supply = <&vcc_3v3>;
 	vqmmc-supply = <&vcc_1v8>;
 	status = "okay";
+};
+
+&joypad {
+	sw13 {
+		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR";
+		linux,code = <BTN_TR>;
+	};
+	sw15 {
+		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR2";
+		linux,code = <BTN_TR2>;
+	};
 };

@@ -63,25 +63,24 @@
 	};
 };
 
-&gpio_keys_control {
-	button-r1 {
-		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-		label = "TR";
-		linux,code = <BTN_TR>;
-	};
-
-	button-r2 {
-		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-		label = "TR2";
-		linux,code = <BTN_TR2>;
-	};
-};
-
 &rk817 {
 	rk817_charger: charger {
 		monitored-battery = <&battery>;
 		rockchip,resistor-sense-micro-ohms = <10000>;
 		rockchip,sleep-enter-current-microamp = <300000>;
 		rockchip,sleep-filter-current-microamp = <100000>;
+	};
+};
+
+&joypad {
+	sw13 {
+		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR";
+		linux,code = <BTN_TR>;
+	};
+	sw15 {
+		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR2";
+		linux,code = <BTN_TR2>;
 	};
 };

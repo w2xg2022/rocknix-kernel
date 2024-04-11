@@ -8,6 +8,126 @@
 #include "rk3566-anbernic-rgxx3.dtsi"
 
 / {
+/*
+ * Device uses a non-standard six button layout for a gamepad with X,
+ * Y, and Z on the top row of buttons and A, B, and C under the bottom
+ * row.
+ */
+	joypad: rocknix-singleadc-joypad {
+		compatible = "rocknix-singleadc-joypad";
+		pinctrl-0 = <&btn_pins_ctrl>;
+		pinctrl-names = "default";
+		joypad-name = "rg_arc_joypad";
+		joypad-product = <0x0A2C>;
+		joypad-revision = <0x0100>;
+		joypad-vendor = <0x0001>;
+
+		status = "okay";
+		amux-count = <0>;
+		/* poll device interval (ms), adc read interval */
+		poll-interval = <10>;	
+		pwms = <&pwm5 0 1000000000 0>;
+		pwm-names = "enable";
+		rumble-boost-weak = <0x0000>;
+		rumble-boost-strong = <0x0000>;
+
+		button-down {
+			gpios = <&gpio3 RK_PA4 GPIO_ACTIVE_LOW>;
+			label = "DPAD-DOWN";
+			linux,code = <BTN_DPAD_DOWN>;
+		};
+
+		button-l1 {
+			gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_LOW>;
+			label = "TL";
+			linux,code = <BTN_TL>;
+		};
+
+		button-l2 {
+			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
+			label = "TL2";
+			linux,code = <BTN_TL2>;
+		};
+
+		button-select {
+			gpios = <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>;
+			label = "SELECT";
+			linux,code = <BTN_SELECT>;
+		};
+
+		button-start {
+			gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
+			label = "START";
+			linux,code = <BTN_START>;
+		};
+
+		button-up {
+			gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_LOW>;
+			label = "DPAD-UP";
+			linux,code = <BTN_DPAD_UP>;
+		};
+
+		button-a {
+			gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_LOW>;
+			label = "A";
+			linux,code = <BTN_A>;
+		};
+
+		button-b {
+			gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
+			label = "B";
+			linux,code = <BTN_B>;
+		};
+
+		button-c {
+			gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_LOW>;
+			label = "C";
+			linux,code = <BTN_C>;
+		};
+
+		button-left {
+			gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_LOW>;
+			label = "DPAD-LEFT";
+			linux,code = <BTN_DPAD_LEFT>;
+		};
+
+		button-r1 {
+			gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
+			label = "TR";
+			linux,code = <BTN_TR>;
+		};
+
+		button-r2 {
+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
+			label = "TR2";
+			linux,code = <BTN_TR2>;
+		};
+
+		button-right {
+			gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
+			label = "DPAD-RIGHT";
+			linux,code = <BTN_DPAD_RIGHT>;
+		};
+
+		button-x {
+			gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
+			label = "X";
+			linux,code = <BTN_X>;
+		};
+
+		button-y {
+			gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+			label = "Y";
+			linux,code = <BTN_Y>;
+		};
+
+		button-z {
+			gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
+			label = "Z";
+			linux,code = <BTN_Z>;
+		};
+	};
+
 	backlight: backlight {
 		compatible = "pwm-backlight";
 		power-supply = <&vcc_sys>;
@@ -123,73 +243,6 @@
 				remote-endpoint = <&mipi_out_panel>;
 			};
 		};
-	};
-};
-
-/*
- * Device uses a non-standard six button layout for a gamepad with X,
- * Y, and Z on the top row of buttons and A, B, and C under the bottom
- * row.
- */
-&gpio_keys_control {
-	button-a {
-		gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_LOW>;
-		label = "A";
-		linux,code = <BTN_A>;
-	};
-
-	button-b {
-		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-		label = "B";
-		linux,code = <BTN_B>;
-	};
-
-	button-c {
-		gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_LOW>;
-		label = "C";
-		linux,code = <BTN_C>;
-	};
-
-	button-left {
-		gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_LOW>;
-		label = "DPAD-LEFT";
-		linux,code = <BTN_DPAD_LEFT>;
-	};
-
-	button-r1 {
-		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-		label = "TR";
-		linux,code = <BTN_TR>;
-	};
-
-	button-r2 {
-		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-		label = "TR2";
-		linux,code = <BTN_TR2>;
-	};
-
-	button-right {
-		gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
-		label = "DPAD-RIGHT";
-		linux,code = <BTN_DPAD_RIGHT>;
-	};
-
-	button-x {
-		gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
-		label = "X";
-		linux,code = <BTN_X>;
-	};
-
-	button-y {
-		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
-		label = "Y";
-		linux,code = <BTN_Y>;
-	};
-
-	button-z {
-		gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
-		label = "Z";
-		linux,code = <BTN_Z>;
 	};
 };
 
