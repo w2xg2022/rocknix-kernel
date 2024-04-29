@@ -937,7 +937,7 @@ static const struct st7701_panel_desc kd50t048a_desc = {
 };
 
 static const struct drm_display_mode rg_arc_mode = {
-	.clock          = 25600,
+	.clock          = 26000,
 
 	.hdisplay	= 480,
 	.hsync_start	= 480 + 60,
@@ -945,9 +945,9 @@ static const struct drm_display_mode rg_arc_mode = {
 	.htotal         = 480 + 60 + 42 + 60,
 
 	.vdisplay	= 640,
-	.vsync_start	= 640 + 10,
-	.vsync_end	= 640 + 10 + 4,
-	.vtotal         = 640 + 10 + 4 + 16,
+	.vsync_start	= 640 + 8,
+	.vsync_end	= 640 + 8 + 4,
+	.vtotal         = 640 + 8 + 4 + 13,
 
 	.width_mm	= 63,
 	.height_mm	= 84,
