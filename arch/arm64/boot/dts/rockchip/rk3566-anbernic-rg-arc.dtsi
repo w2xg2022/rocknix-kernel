@@ -226,6 +226,7 @@
 		pinctrl-0 = <&spk_amp_enable_h>;
 		pinctrl-names = "default";
 		sound-name-prefix = "Speaker Amp";
+		VCC-supply = <&vcc_3v3>;
 	};
 };
 
