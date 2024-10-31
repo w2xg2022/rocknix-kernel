@@ -208,6 +208,7 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&i2s1m0_mclk>, <&pmic_int_l>;
 		wakeup-source;
+		system-power-controller;
 
 		vcc1-supply = <&vcc_sys>;
 		vcc2-supply = <&vcc_sys>;
