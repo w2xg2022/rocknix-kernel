@@ -489,6 +489,13 @@
 		};
 	};
 
+	wifi {
+		wifi_host_wake_l: wifi-host-wake-l {
+			rockchip,pins =
+				<4 RK_PA1 RK_FUNC_GPIO &pcfg_pull_down>;
+		};
+	};
+
 	vcc-wifi {
 		vcc_wifi_h: vcc-wifi-h {
 			rockchip,pins =
@@ -559,6 +566,8 @@
 };
 
 &sdmmc2 {
+	#address-cells = <1>;
+	#size-cells = <0>;
 	bus-width = <4>;
 	cap-sd-highspeed;
 	cap-sdio-irq;
@@ -576,6 +585,15 @@
 	no-sd;
 	sd-uhs-sdr50;
 	status = "okay";
+
+	wifi@1 {
+		reg = <1>;
+		interrupt-names = "host-wake";
+		interrupt-parent = <&gpio4>;
+		interrupts = <RK_PA1 IRQ_TYPE_LEVEL_HIGH>;
+		pinctrl-0 = <&wifi_host_wake_l>;
+		pinctrl-names = "default";
+	};
 };
 
 &tsadc {
